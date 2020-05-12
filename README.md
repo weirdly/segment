@@ -17,8 +17,8 @@ You'll need to provide your own implementations of the PSR standards, or install
 
 ```php
 $writeKey = 'abc123';
-$psr18Client = new Symfony\Component\HttpClient\Psr18Client();
-$segmentHttpClient = new \Weirdly\Segment\Http\HttpClient($writeKey, $psr18Client, $psr18Client, $psr18Client);
+$httpClient = $requestFactory = $streamFactory = new Symfony\Component\HttpClient\Psr18Client();
+$segmentHttpClient = new \Weirdly\Segment\Http\HttpClient($writeKey, $httpClient, $requestFactory, $streamFactory);
 $client = new \Weirdly\Segment\SegmentClient($segmentHttpClient);
 ```
 
