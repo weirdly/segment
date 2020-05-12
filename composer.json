@@ -2,6 +2,7 @@
     "name": "weirdly/segmentio",
     "description": "A modern SegmentIO client",
     "type": "library",
+    "keywords": ["segment", "segmentio"],
     "require": {
         "php": "^7.4",
         "psr/http-client": "^1.0",
@@ -19,6 +20,10 @@
             "Weirdly\\Segment\\": "src/",
             "Weirdly\\Segment\\Tests\\": "tests/"
         }
+    },
+    "suggest": {
+        "symfony/http-client": "An HTTP client that supports concurrent/async requests.",
+        "nyholm/psr7": "A PSR library"
     },
     "license": "MIT",
     "authors": [
