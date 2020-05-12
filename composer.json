@@ -1,6 +1,6 @@
 {
-    "name": "weirdly/segmentio",
-    "description": "A modern SegmentIO client",
+    "name": "weirdly/segment",
+    "description": "A modern Segment client",
     "type": "library",
     "keywords": ["segment", "segmentio"],
     "require": {
