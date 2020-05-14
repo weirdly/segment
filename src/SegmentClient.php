@@ -3,7 +3,7 @@
 namespace Weirdly\Segment;
 
 use Weirdly\Segment\Error\RequestError;
-use Weirdly\Segment\Http\HttpClient;
+use Weirdly\Segment\Http\HttpClientInterface;
 use Weirdly\Segment\Request;
 
 class SegmentClient
@@ -29,11 +29,11 @@ class SegmentClient
         Request\Batch::class    => self::RESOURCE_BATCH,
     ];
 
-    private HttpClient $client;
+    private HttpClientInterface $client;
 
     private string $version;
 
-    public function __construct(HttpClient $client, string $version = self::VERSION_DEFAULT)
+    public function __construct(HttpClientInterface $client, string $version = self::VERSION_DEFAULT)
     {
         $this->client  = $client;
         $this->version = $version;

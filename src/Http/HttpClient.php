@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Weirdly\Segment\Error\RequestError;
 
-class HttpClient
+class HttpClient implements HttpClientInterface
 {
     private string $writeKey;
 
