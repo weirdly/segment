@@ -104,9 +104,14 @@ class SegmentClient
         $this->send($request);
     }
 
-    public function send($segmentRequest): void
+    public function send(Request\AbstractRequest $segmentRequest): void
     {
         $endpoint = self::$resourceMap[get_class($segmentRequest)];
+
+        $segmentRequest->withLibraryContext([
+            'name'    => 'weirdly/segment',
+            'version' => '1.0.1', // What is a better way to set this?
+        ]);
 
         $response = $this->client->post($this->buildUri($endpoint), $segmentRequest);
 
