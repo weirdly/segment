@@ -110,7 +110,7 @@ class SegmentClient
 
         $segmentRequest->withLibraryContext([
             'name'    => 'weirdly/segment',
-            'version' => '1.0.1', // What is a better way to set this?
+            'version' => '0.3', // What is a better way to set this?
         ]);
 
         $response = $this->client->post($this->buildUri($endpoint), $segmentRequest);
