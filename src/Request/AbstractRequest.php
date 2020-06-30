@@ -257,6 +257,6 @@ abstract class AbstractRequest implements \JsonSerializable
 
     public static function filterDict(array $dict): array
     {
-        return array_filter($dict, fn ($val) => (!is_array($val) && $val !== null && $val !== '') || (is_array($val) && empty($val)));
+        return array_filter($dict, fn ($val) => (!is_array($val) && $val !== null && $val !== '') || (is_array($val) && !empty($val)));
     }
 }
