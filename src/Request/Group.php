@@ -163,7 +163,7 @@ final class Group extends AbstractRequest
             $this->serializeAnonymous(),
             $this->serializeTimestamp(),
             parent::jsonSerialize(),
-            array_filter([
+            self::filterDict([
                 'groupId' => $this->groupId,
                 'traits'  => $this->traits,
             ])

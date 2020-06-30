@@ -36,7 +36,7 @@ trait AnonymousAwareTrait
     {
         return array_merge(
             $this->serializeIdentity(),
-            array_filter([
+            self::filterDict([
                 'anonymousId' => $this->anonymousId,
             ])
         );

@@ -29,7 +29,7 @@ trait IdentityAwareTrait
 
     public function jsonSerialize(): array
     {
-        return array_filter([
+        return self::filterDict([
             'userId' => $this->userId,
         ]);
     }

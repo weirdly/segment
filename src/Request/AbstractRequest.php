@@ -242,9 +242,9 @@ abstract class AbstractRequest implements \JsonSerializable
 
     public function jsonSerialize(): array
     {
-        return array_filter([
-            'context'      => $this->context,
-            'integrations' => $this->integrations,
+        return self::filterDict([
+            'context'      => self::filterDict($this->context),
+            'integrations' => self::filterDict($this->integrations),
         ]);
     }
 
@@ -253,5 +253,10 @@ abstract class AbstractRequest implements \JsonSerializable
         $this->context[$field] = $value;
 
         return $this;
+    }
+
+    public static function filterDict(array $dict): array
+    {
+        return array_filter($dict, fn ($val) => $val !== null && $val !== '');
     }
 }

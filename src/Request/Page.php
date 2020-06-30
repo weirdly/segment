@@ -137,7 +137,7 @@ final class Page extends AbstractRequest
             $this->serializeAnonymous(),
             $this->serializeTimestamp(),
             parent::jsonSerialize(),
-            array_filter([
+            self::filterDict([
                 'name'       => $this->name,
                 'properties' => $this->properties,
             ])

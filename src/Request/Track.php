@@ -83,7 +83,7 @@ final class Track extends AbstractRequest
             $this->serializeAnonymous(),
             $this->serializeTimestamp(),
             parent::jsonSerialize(),
-            array_filter([
+            self::filterDict([
                 'event'      => $this->event,
                 'properties' => $this->properties,
             ])

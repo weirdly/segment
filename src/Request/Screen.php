@@ -67,8 +67,8 @@ final class Screen extends AbstractRequest
             $this->serializeIdentity(),
             $this->serializeAnonymous(),
             parent::jsonSerialize(),
-            array_filter([
-                'name' => $this->name,
+            self::filterDict([
+                'name'       => $this->name,
                 'properties' => $this->properties,
             ])
         );

@@ -39,7 +39,7 @@ final class Alias extends AbstractRequest
             $this->serializeAnonymous(),
             $this->serializeTimestamp(),
             parent::jsonSerialize(),
-            array_filter([
+            self::filterDict([
                 'previousId' => $this->previousId,
             ])
         );

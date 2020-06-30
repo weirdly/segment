@@ -31,7 +31,7 @@ trait TimestampAwareTrait
 
     public function jsonSerialize(): array
     {
-        return array_filter([
+        return self::filterDict([
             'timestamp' => $this->timestamp
                 ? $this->timestamp->format(\DateTimeInterface::ATOM)
                 : null,
