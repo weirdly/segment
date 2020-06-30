@@ -108,11 +108,6 @@ class SegmentClient
     {
         $endpoint = self::$resourceMap[get_class($segmentRequest)];
 
-        $segmentRequest->withLibraryContext([
-            'name'    => 'weirdly/segment',
-            'version' => '0.3', // What is a better way to set this?
-        ]);
-
         $response = $this->client->post($this->buildUri($endpoint), $segmentRequest);
 
         if ($response->getStatusCode() >= 500) {

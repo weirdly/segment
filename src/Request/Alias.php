@@ -19,6 +19,8 @@ final class Alias extends AbstractRequest
 
     public function __construct(string $previousId)
     {
+        parent::__construct();
+
         $this->previousId = $previousId;
     }
 

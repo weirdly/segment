@@ -52,6 +52,11 @@ abstract class AbstractRequest implements \JsonSerializable
 
     public function __construct()
     {
+        $this->withLibraryContext([
+            'name'    => 'weirdly/segment',
+            'version' => '0.4', // What is a better way to set this value?
+        ]);
+
         $this->timestamp = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
     }
 

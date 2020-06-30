@@ -34,6 +34,8 @@ final class Group extends AbstractRequest
 
     public function __construct(string $groupId)
     {
+        parent::__construct();
+
         $this->groupId = $groupId;
     }
 

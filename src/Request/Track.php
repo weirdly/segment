@@ -25,6 +25,8 @@ final class Track extends AbstractRequest
 
     public function __construct(string $event)
     {
+        parent::__construct();
+
         $this->event = $event;
     }
 
