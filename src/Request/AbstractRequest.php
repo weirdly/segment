@@ -43,10 +43,16 @@ abstract class AbstractRequest implements \JsonSerializable
 
     public function __construct()
     {
-        $this->withLibraryContext([
+        $libraryContext = [
             'name'    => 'weirdly/segment',
-            'version' => '0.4', // What is a better way to set this value?
-        ]);
+            'version' => '?',
+        ];
+
+        if (class_exists(\Jean85\PrettyVersions::class)) {
+            $libraryContext['version'] = \Jean85\PrettyVersions::getVersion('weirdly/segment')->getPrettyVersion();
+        }
+
+        $this->withLibraryContext($libraryContext);
 
         if (method_exists($this, 'setTimestamp')) {
             $this->setTimestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
