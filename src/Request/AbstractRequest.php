@@ -41,15 +41,6 @@ abstract class AbstractRequest implements \JsonSerializable
      */
     private array $integrations = [];
 
-    /**
-     * Timestamp when the message itself took place, defaulted to the current time by
-     * the Segment Tracking API, as a ISO-8601 format date string. If you’re importing
-     * data from the past, make sure you to provide a timestamp.
-     *
-     * @see https://segment.com/docs/connections/spec/common#timestamps
-     */
-    private \DateTimeInterface $timestamp;
-
     public function __construct()
     {
         $this->withLibraryContext([
@@ -57,7 +48,9 @@ abstract class AbstractRequest implements \JsonSerializable
             'version' => '0.4', // What is a better way to set this value?
         ]);
 
-        $this->timestamp = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        if (method_exists($this, 'setTimestamp')) {
+            $this->setTimestamp(new \DateTimeImmutable('20 days ago', new \DateTimeZone('UTC')));
+        }
     }
 
     /**
@@ -221,19 +214,6 @@ abstract class AbstractRequest implements \JsonSerializable
         return $this;
     }
 
-    public function withTimestamp(\DateTimeInterface $timestamp): self
-    {
-        if ($timestamp instanceof \DateTime) {
-            $timestamp = clone $timestamp;
-        }
-
-        $timestamp = $timestamp->setTimezone(new \DateTimeZone('UTC'));
-
-        $this->timestamp = $timestamp;
-
-        return $this;
-    }
-
     public function getContext(): array
     {
         return $this->context;
@@ -254,17 +234,11 @@ abstract class AbstractRequest implements \JsonSerializable
         return $this->integrations;
     }
 
-    public function getTimestamp(): \DateTimeInterface
-    {
-        return $this->timestamp;
-    }
-
     public function jsonSerialize(): array
     {
         return array_filter([
             'context'      => $this->context,
             'integrations' => $this->integrations,
-            'timestamp'    => $this->timestamp->format(\DateTimeInterface::ATOM),
         ]);
     }
 
