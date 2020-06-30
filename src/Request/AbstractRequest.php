@@ -33,7 +33,27 @@ abstract class AbstractRequest implements \JsonSerializable
      */
     private array $context = [];
 
+    /**
+     * A dictionary of destination names that the message should be sent to. 'All' is
+     * a special key that applies when no key for a specific destination is found.
+     *
+     * @see https://segment.com/docs/connections/spec/common/#integrations
+     */
     private array $integrations = [];
+
+    /**
+     * Timestamp when the message itself took place, defaulted to the current time by
+     * the Segment Tracking API, as a ISO-8601 format date string. If you’re importing
+     * data from the past, make sure you to provide a timestamp.
+     *
+     * @see https://segment.com/docs/connections/spec/common#timestamps
+     */
+    private \DateTimeInterface $timestamp;
+
+    public function __construct()
+    {
+        $this->timestamp = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+    }
 
     /**
      * Whether a user is active.
@@ -196,6 +216,19 @@ abstract class AbstractRequest implements \JsonSerializable
         return $this;
     }
 
+    public function withTimestamp(\DateTimeInterface $timestamp): self
+    {
+        if ($timestamp instanceof \DateTime) {
+            $timestamp = clone $timestamp;
+        }
+
+        $timestamp = $timestamp->setTimezone(new \DateTimeZone('UTC'));
+
+        $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
     public function getContext(): array
     {
         return $this->context;
@@ -216,11 +249,17 @@ abstract class AbstractRequest implements \JsonSerializable
         return $this->integrations;
     }
 
+    public function getTimestamp(): \DateTimeInterface
+    {
+        return $this->timestamp;
+    }
+
     public function jsonSerialize(): array
     {
         return array_filter([
             'context'      => $this->context,
             'integrations' => $this->integrations,
+            'timestamp'    => $this->timestamp->format(\DateTimeInterface::ATOM),
         ]);
     }
 
