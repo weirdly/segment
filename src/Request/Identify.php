@@ -25,12 +25,9 @@ final class Identify extends AbstractRequest
     public const TRAIT_USERNAME    = 'username';
     public const TRAIT_WEBSITE     = 'website';
 
-    use AnonymousAwareTrait {
-        jsonSerialize as serializeAnonymous;
-    }
-
-    use TimestampAwareTrait {
-        jsonSerialize as serializeTimestamp;
+    use AnonymousAwareTrait, TimestampAwareTrait {
+        AnonymousAwareTrait::jsonSerialize as serializeAnonymous;
+        TimestampAwareTrait::jsonSerialize as serializeTimestamp;
     }
 
     private array $traits = [];

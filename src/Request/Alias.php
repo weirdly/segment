@@ -7,12 +7,9 @@ namespace Weirdly\Segment\Request;
  */
 final class Alias extends AbstractRequest
 {
-    use AnonymousAwareTrait {
-        jsonSerialize as serializeAnonymous;
-    }
-
-    use TimestampAwareTrait {
-        jsonSerialize as serializeTimestamp;
+    use AnonymousAwareTrait, TimestampAwareTrait {
+        AnonymousAwareTrait::jsonSerialize as serializeAnonymous;
+        TimestampAwareTrait::jsonSerialize as serializeTimestamp;
     }
 
     private string $previousId;

@@ -20,12 +20,9 @@ final class Group extends AbstractRequest
     public const TRAIT_WEBSITE     = 'website';
     public const TRAIT_PLAN        = 'plan';
 
-    use AnonymousAwareTrait {
-        jsonSerialize as serializeAnonymous;
-    }
-
-    use TimestampAwareTrait {
-        jsonSerialize as serializeTimestamp;
+    use AnonymousAwareTrait, TimestampAwareTrait {
+        AnonymousAwareTrait::jsonSerialize as serializeAnonymous;
+        TimestampAwareTrait::jsonSerialize as serializeTimestamp;
     }
 
     private string $groupId;

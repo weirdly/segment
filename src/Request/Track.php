@@ -11,12 +11,9 @@ final class Track extends AbstractRequest
     public const PROPERTY_CURRENCY = 'currency';
     public const PROPERTY_VALUE    = 'value';
 
-    use AnonymousAwareTrait {
-        jsonSerialize as serializeAnonymous;
-    }
-
-    use TimestampAwareTrait {
-        jsonSerialize as serializeTimestamp;
+    use AnonymousAwareTrait, TimestampAwareTrait {
+        AnonymousAwareTrait::jsonSerialize as serializeAnonymous;
+        TimestampAwareTrait::jsonSerialize as serializeTimestamp;
     }
 
     private string $event;

@@ -9,12 +9,9 @@ final class Screen extends AbstractRequest
 {
     public const PROPERTY_NAME = 'name';
 
-    use AnonymousAwareTrait {
-        jsonSerialize as serializeAnonymous;
-    }
-
-    use TimestampAwareTrait {
-        jsonSerialize as serializeTimestamp;
+    use AnonymousAwareTrait, TimestampAwareTrait {
+        AnonymousAwareTrait::jsonSerialize as serializeAnonymous;
+        TimestampAwareTrait::jsonSerialize as serializeTimestamp;
     }
 
     private ?string $name = null;
