@@ -2,6 +2,21 @@ A modern [Segment](https://segment.com/) client. Uses PSR7, PSR17, and PSR18 for
 
 ### Installation
 
+Add this repository to your composer repository config.
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:weirdly/segment.git"
+    }
+  ]
+}
+```
+
+Then require `weirdly/segment`.
+
 ```sh
 composer require weirdly/segment
 ```
