@@ -49,7 +49,7 @@ abstract class AbstractRequest implements \JsonSerializable
         ]);
 
         if (method_exists($this, 'setTimestamp')) {
-            $this->setTimestamp(new \DateTimeImmutable('20 days ago', new \DateTimeZone('UTC')));
+            $this->setTimestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
         }
     }
 
