@@ -4,20 +4,24 @@
     "type": "library",
     "keywords": ["segment", "segmentio"],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
         "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1",
-        "symfony/http-client": "^5.0",
+        "symfony/http-client": "^5.0|^6.0",
         "nyholm/psr7": "^1.2",
         "phpspec/prophecy-phpunit": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Weirdly\\Segment\\": "src/",
+            "Weirdly\\Segment\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Weirdly\\Segment\\Tests\\": "tests/"
         }
     },
